@@ -44,10 +44,10 @@ pageButton.disabled = true;
 
 
 let userSelectedDate = new Date();
-let todaysDate = new Date();
+/*let todaysDate = new Date();*/
 
 function isItPast(startDate, endDate) {
-  if (endDate < startDate) {
+  if (endDate <= startDate) {
     pageButton.disabled = true;
     iziToast.error({
         message: "Please choose a date in the future"
@@ -65,7 +65,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
-    isItPast(todaysDate, userSelectedDate);
+    isItPast(Date.now(), userSelectedDate);
   },
 };
 
@@ -93,11 +93,13 @@ function convertMs(ms) {
 
 
 pageButton.addEventListener("click", () => {
+  // Запретить нажатие
+  pageButton.disabled = true;
+  dateInput.disabled = true;
+
   const intervalId = setInterval(() => {
     /* function*/
-    // Запретить нажатие
-    pageButton.disabled = true;
-    dateInput.disabled = true;
+
     
     let timeLeft = userSelectedDate - Date.now();
 
@@ -111,7 +113,6 @@ pageButton.addEventListener("click", () => {
     fieldsValues.forEach((field, index) => {
       if (timeLeft <= 0) {
         clearInterval(intervalId);
-        pageButton.disabled = false;
         dateInput.disabled = false;
         return;
       }  

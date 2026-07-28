@@ -15,22 +15,22 @@ pageForm.addEventListener("submit", event => {
         let delay = delayInput.value;
         setTimeout(() => {
             if (checkBoxFul.checked) {
-                resolve(`✅ Fulfilled promise in ${delay}ms`);
+                resolve(delay);
             }
             else {
-                reject(`❌ Rejected promise in ${delay}ms`);
+                reject(delay);
             }
         }, delay);
     }); 
     promise
         .then(value => {
             iziToast.success({
-                message: value,
+                message: `✅ Fulfilled promise in ${delay}ms`,
             });
         })
         .catch(error => {
             iziToast.error({
-                message: error,
+                message: `❌ Rejected promise in ${delay}ms`,
             }); 
         });
 });
