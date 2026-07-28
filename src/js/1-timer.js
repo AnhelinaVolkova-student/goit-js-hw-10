@@ -112,6 +112,7 @@ pageButton.addEventListener("click", () => {
     ];
     fieldsValues.forEach((field, index) => {
       if (timeLeft <= 0) {
+        field.textContent = "00";
         clearInterval(intervalId);
         dateInput.disabled = false;
         return;

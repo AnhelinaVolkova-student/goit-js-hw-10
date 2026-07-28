@@ -25,12 +25,12 @@ pageForm.addEventListener("submit", event => {
     promise
         .then(value => {
             iziToast.success({
-                message: `✅ Fulfilled promise in ${delay}ms`,
+                message: `✅ Fulfilled promise in ${value}ms`,
             });
         })
         .catch(error => {
             iziToast.error({
-                message: `❌ Rejected promise in ${delay}ms`,
+                message: `❌ Rejected promise in ${error}ms`,
             }); 
         });
 });
